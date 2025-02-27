@@ -49,9 +49,7 @@ while GameIsRunnig do
     end
     enemy.y = enemy.y + 2
     if enemy.y > 384 then
-        GameIsRunnig = true
-        enemy.x = math.random(1, 256-35)
-        enemy.y = 0
+        GameIsRunnig = false
     end
 
     screen.drawFillRect(SCREEN_DOWN,0,0,256,192,Color.new(0,21,31))
