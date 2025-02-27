@@ -2,7 +2,8 @@ playerImg = Image.load("player.png",VRAM)
 rockImg = Image.load("rock.png",VRAM)
 enemyImg = Image.load("enemy.png",VRAM)
 
-math.randomseed(os.time())
+randomSeed = os.time()
+math.randomseed(randomSeed)
 
 player = {}
 player.x = 128-35
@@ -25,7 +26,8 @@ end
 
 while GameIsRunnig do
     Controls.read()
-    math.randomseed(os.time())
+    randomSeed = randomSeed + 0.1
+    math.randomseed(randomSeed)
 
     if Keys.held.Right then
         player.x = player.x + 5
@@ -33,13 +35,23 @@ while GameIsRunnig do
     if Keys.held.Left then
         player.x = player.x - 5
     end
+    if Stylus.held then
+        if Stylus.X > player.x then
+            player.x = player.x + 5
+        end
+        if Stylus.X < player.x then
+            player.x = player.x - 5
+        end
+    end
 
-    if Keys.newPress.A then
+    if Keys.newPress.A  or Stylus.newPress then
         table.insert(rocks,{x = player.x+15,y = player.y})
     end
     enemy.y = enemy.y + 2
     if enemy.y > 384 then
-        GameIsRunnig = false
+        GameIsRunnig = true
+        enemy.x = math.random(1, 256-35)
+        enemy.y = 0
     end
 
     screen.drawFillRect(SCREEN_DOWN,0,0,256,192,Color.new(0,21,31))
@@ -52,6 +64,9 @@ while GameIsRunnig do
         if checkCollision(e.x,e.y+192,8,11,enemy.x,enemy.y,35,35) then
             enemy.x = math.random(1, 256-35)
             enemy.y = 0
+        end
+        if e.y < -192 then
+            table.remove(rocks,i)
         end
     end
 
