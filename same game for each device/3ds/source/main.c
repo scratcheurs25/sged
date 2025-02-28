@@ -34,7 +34,7 @@ void initSprite(){
 
     enemyImg = 1;
     C2D_SpriteFromSheet(&Enemy,gameImg,enemyImg);
-    C2D_SpriteSetPos(&Enemy,rand() % SCREEN_WIDTH - 40,0);
+    C2D_SpriteSetPos(&Enemy,rand() % (int)(SCREEN_WIDTH - Enemy.params.pos.w),0);
 }
 
 void makeRock(){
@@ -62,7 +62,7 @@ void rockIdel(){
 
         if (checkCollision(x, y, w, h, ex, ey, ew, eh)){
             srand(time(NULL));
-            C2D_SpriteSetPos(&Enemy,rand() % SCREEN_WIDTH - 40 ,0);
+            C2D_SpriteSetPos(&Enemy,rand() % (int)(SCREEN_WIDTH - Enemy.params.pos.w),0);
         }
 
         if (y < 0){
