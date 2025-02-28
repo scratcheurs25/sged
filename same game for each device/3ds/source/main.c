@@ -40,7 +40,7 @@ void initSprite(){
 void makeRock(){
     rockImg = 2;
     C2D_SpriteFromSheet(&rocks[rocknum],gameImg,rockImg);
-    C2D_SpriteSetPos(&rocks[rocknum],Player.params.pos.x,Player.params.pos.y);
+    C2D_SpriteSetPos(&rocks[rocknum],Player.params.pos.x+15,Player.params.pos.y);
     rocknum += 1;
 } 
 
@@ -85,17 +85,6 @@ int main(){
     consoleInit(GFX_BOTTOM,NULL);
 
     touchPosition pos;
-    printf("click here to start");
-
-    bool startLoop = true;
-    while(startLoop){
-        hidScanInput();
-        hidTouchRead(&pos);
-        if (pos.px > 0){
-            startLoop = false;
-        }
-    }
-    consoleClear();
 
     C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP,GFX_LEFT);
 
