@@ -149,5 +149,6 @@ int main(){
     romfsExit();
     C2D_Fini();
     C3D_Fini();
+    gfxExit();
     return 0;
 }
