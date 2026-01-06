@@ -115,7 +115,7 @@ int main(){
         }
         if (pos.px > 128){
             C2D_SpriteMove(&Player,5,0);
-        }else if ((pos.px < 128) & !(pos.px == 0)){
+        }else if ((pos.px < 128) && !(pos.px == 0)){
             C2D_SpriteMove(&Player,-5,0);
         }
         if (Enemy.params.pos.y > SCREEN_HEIGHT){
@@ -141,3 +141,4 @@ int main(){
     gfxExit();
     return 0;
 }
+
